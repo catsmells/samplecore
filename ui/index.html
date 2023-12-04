@@ -1,0 +1,22 @@
+<!-- EUI -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node Status</title>
+</head>
+<body>
+  <h1>Node Status</h1>
+  <p>Connected Nodes: <span id="nodes">0</span></p>
+  <p>Total Data: <span id="data">0</span> bytes</p>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+  <script>
+    const socket = io();
+    socket.on('update', (data) => {
+      document.getElementById('nodes').textContent = data.nodes;
+      document.getElementById('data').textContent = data.data;
+    });
+  </script>
+</body>
+</html>
